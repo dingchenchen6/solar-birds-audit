@@ -345,9 +345,9 @@ nav a{font-size:12.5px}
   <div class="tbl-wrap"><table>
     <thead><tr><th>规则</th><th>判定内容</th><th>触发数</th><th>含义</th></tr></thead>
     <tbody>
-      <tr><td class="mono-td">R1</td><td>H &gt; ln(S):熵超丰富度上限</td><td class="mono-td">0</td><td rowspan="2" style="vertical-align:middle"><span class="ok">✓ 作者的指数计算在给定输入下是自洽的</span>;这一点应当明确写出,问题不在算术</td></tr>
+      <tr><td class="mono-td">R1</td><td>H &gt; ln(S):熵超丰富度上限</td><td class="mono-td">0</td><td rowspan="2" style="vertical-align:middle"><span class="ok">✓ 三条数学界限均无违反,作者的指数计算在给定输入下自洽</span>;这一点应当明确写出,问题不在算术</td></tr>
       <tr><td class="mono-td">R2</td><td>D &gt; 1−e^(−H):违反 Hill 数递减</td><td class="mono-td">0</td></tr>
-      <tr><td class="mono-td">R3</td><td>S≥2 且 H=0:多物种却零熵,数学不可能</td><td class="mono-td no">1</td><td><b>仅有的一次触发:新会区 2015-03</b>(S=4,H=8×10⁻⁷)。四个物种而熵为零,在数学上只能来自某一物种的相对丰度于机器精度内等于 1,对应 21.47 亿只白鹭那条 int32 溢出记录。我的规则在不知道该记录的情况下独立将其标出,而该取值进入了主回归的因变量</td></tr>
+      <tr><td class="mono-td">R3</td><td>S≥2 且 H&lt;10⁻³:多物种却近零熵</td><td class="mono-td no">1</td><td><b>仅有的一次触发:新会区 2015-03</b>(S=4,H=8×10⁻⁷,相邻月份 2.2–2.9)。该取值并非数学上不可能,但在算术上极端:最小配置下(另三种各 1 只)要求某单一物种计数达 6.5×10⁷ 量级,对应 21.47 亿只白鹭那条 int32 溢出记录。我的筛查在不知道该记录的情况下独立将其标出,而该取值进入了主回归的因变量</td></tr>
       <tr><td class="mono-td">R4</td><td>S≥20 且 H&lt;0.2:超大计数软签名</td><td class="mono-td no">18</td><td>与 R3 同构的污染候选(如广汉 2023-11:25 种,H=0.02)</td></tr>
       <tr><td class="mono-td">R5</td><td>D &gt; 1−1/S:超均匀群落上限</td><td class="mono-td">0</td><td>—</td></tr>
     </tbody>
@@ -413,8 +413,8 @@ nav a{font-size:12.5px}
       <tr><td>ln(总观鸟时长) ~ PSI</td><td class="mono-td no">−0.057</td><td class="mono-td">3×10⁻¹³</td><td>总努力同样被“抑制”</td></tr>
       <tr><td>Duration(作者的控制变量) ~ PSI</td><td class="mono-td no">−0.0177</td><td class="mono-td">2.8×10⁻⁵</td><td>其“努力控制”是处理后变量,即<b>坏控制</b>(bad control)</td></tr>
       <tr><td>ln(观鸟人数) ~ PSI,<b>仅政策记录县</b></td><td class="mono-td">−0.008</td><td class="mono-td">0.17</td><td><b>81% 的“努力效应”由填零县混入制造</b>,与主回归同源</td></tr>
-      <tr><td>ln(观鸟人数) ~ <b>明年的 PSI</b>(控制当年)</td><td class="mono-td no">−0.045</td><td class="mono-td">1.5×10⁻⁶</td><td><b>因果不可能时间倒流</b>;这是预趋势证据,识别出县级差异趋势</td></tr>
-      <tr><td>实际光伏面积 ~ PSI(县内)</td><td class="mono-td">−0.017</td><td class="mono-td">0.27</td><td>政策文本强度<b>在县内并不预测实际建设</b>,“施工排斥”的解释与原文机制链的第一环因此难以成立</td></tr>
+      <tr><td>ln(观鸟人数) ~ <b>次一日历年的 PSI</b>(控制当年)</td><td class="mono-td no">−0.051</td><td class="mono-td">1.7×10⁻⁶</td><td><b>因果不可能时间倒流</b>;这是预趋势证据,识别出县级差异趋势</td></tr>
+      <tr><td>实际光伏面积 ~ PSI(县内)</td><td class="mono-td">−0.017</td><td class="mono-td">0.27</td><td>政策文本强度<b>在县内并不预测实际建设</b>;仅用有装机记录的县-年重估仍为负(−0.054,P = 0.095),两个口径下均非正向,而“施工排斥”要求为正</td></tr>
       <tr><td>ln(夜间灯光) ~ PSI</td><td class="mono-td">−0.0017</td><td class="mono-td">0.24</td><td>第二阴性对照干净:混淆不是经济总量,而是社会扩散差异</td></tr>
       <tr><td><b>ShannonBD ~ PSI + ln(观鸟人数)</b></td><td class="mono-td">+0.0032</td><td class="mono-td">0.31</td><td><b>加一个正确的努力项,主效应翻正归零</b></td></tr>
       <tr><td>丰富度 ~ PSI(其表 S19)</td><td class="mono-td no">−0.975***</td><td class="mono-td">10⁻⁷</td><td rowspan="2">丰富度效应 <b>92% 由努力解释</b></td></tr>
